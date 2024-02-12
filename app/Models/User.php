@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens;
-    use HasFactory;
+    use HasFactory; 
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
@@ -58,4 +58,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Relacion uno a muchos
+     */
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }
