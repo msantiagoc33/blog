@@ -1,13 +1,18 @@
-@props(['post'])
+@props(['post']) {{--  Para recibir la variable --}}
 <article class="mb-4 bg-white shadow rounded-lg overflow-hidden">
-    <img class="w-full h-40 object-cover object-center" src={{Storage::url($post->image->url)}} alt="">
+    
+    @if($post->image)
+        <img class="w-full h-40 object-cover object-center" src={{Storage::url($post->image->url)}} alt="">
+    @else
+        <img class="w-full h-70 object-cover object-center" src="/riders/LOGO_RAIDERS.PNG" alt="">
+    @endif
 
     <div class="px-6 py-2">
         <h1 class="font-bold text-xl mb-2">
             <a href="{{route('posts.show', $post)}}">{{$post->name}}</a>
         </h1>
         <div class="text-gray-700 text-base">
-            {{$post->extract}}
+            {!!$post->extract!!}
         </div>
     </div>
 
@@ -17,4 +22,4 @@
             {{$tag->name}}</a>
         @endforeach
     </div>
-</article>
+</article> 

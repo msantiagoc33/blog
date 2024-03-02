@@ -35,7 +35,7 @@
 
         {{-- logo --}}
         <a href="/" class="flex flex-shrink-0 items-center">
-          <img class="h-10 w-auto" src="{{ asset('riders/LOGO_RAIDERS.PNG')}}" alt="Your Company">
+          <img class="h-10 w-auto" src="{{ asset('riders/LOGO_RAIDERS.PNG')}}" alt="Logo de los Cabesas Riders">
         </a>
 
         {{-- Menu de navegación lg--}}
@@ -45,9 +45,10 @@
             {{-- <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
               aria-current="page">Dashboard</a> --}}
             @foreach ($categories as $category)
-            <a href="{{route('posts.category', $category)}}"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{
-              $category->name}}</a>
+              <a href="{{route('posts.category', $category)}}"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{
+                $category->name}}
+              </a>
             @endforeach
 
           </div>

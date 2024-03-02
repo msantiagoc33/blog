@@ -17,6 +17,12 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
+        // Llama al metodo published() de PostPolicy para que 
+        // compruebe los posts publicados y borradores para que no
+        // se puedan mostrar escribiendo a mano el id en la url de un
+        // post en modo borrador.
+        $this->authorize('published', $post);
+        
         $similares = Post::where('category_id', $post->category_id)
         ->where('status', 2)
         ->where('id','!=', $post->id)
