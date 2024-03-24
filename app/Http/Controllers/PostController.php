@@ -24,6 +24,7 @@ class PostController extends Controller
         // esta autorización que está en PostPilicy restringe la vista de los post que no estan publicados.
         $this->authorize('published', $post);
 
+        // sellecciona todos los post del mismo usuario
         $similares = Post::where('category_id', $post->category_id)
             ->where('status', 2)
             ->where('id', '!=', $post->id)
