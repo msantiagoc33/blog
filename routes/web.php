@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\PostController;
+use App\Mail\BroadcastMailable;
+
 
 Route::middleware([
     'auth:sanctum',
@@ -18,5 +22,7 @@ Route::middleware([
     Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag'); 
     Route::get('imagenes', [PostController::class, 'imagenes'])->name('posts.imagenes'); 
     
+    Route::get('send-mail', [MailController::class, 'index'])->name('index');
+       
 
 });

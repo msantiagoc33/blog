@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\NuevoPostCorreo;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Image;
@@ -63,7 +67,26 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);
         }
 
-        return redirect()->route('admin.posts.index', $post);
+        /** 
+         * Enviar un correo a todos los riders informando de que se ha creado un nuevo post
+         */
+        
+        $nombreUsuario = Auth::user()->name;
+      
+        $nombreUsuario_mensaje = $nombreUsuario.' ha creado un nuevo post en el blog.';
+        $extracto = $request->extract;
+        $extracto = strip_tags($extracto);
+        $mailData = [
+            'from' => $nombreUsuario_mensaje,
+            'title' => 'Correo del blog de los Riders',
+            'body' => $extracto,
+        ];
+
+        $users = User::all();
+        foreach ($users as $usuario) {
+            Mail::to($usuario->email)->queue(new NuevoPostCorreo($mailData));
+        }
+        return redirect()->route('admin.posts.index', $post)->with('Se ha enviado un correo a todos los riders informando del nuevo post.');
     }
 
     public function storeImage(PostRequest $request)
