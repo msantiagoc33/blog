@@ -91,7 +91,7 @@
     {!! Form::textarea('extract', null, ['class' => 'form-control']) !!}
 
     @error('extract')
-        <small class="font-weight-bold text-danger">{{ $message }}</small>
+        <small class="font-weight-bold text-danger">{{ $message }}</small> 
     @enderror
 </div>
 

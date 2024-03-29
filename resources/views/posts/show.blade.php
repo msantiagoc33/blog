@@ -25,36 +25,35 @@
                 </div>
 
                 {{-- Mostrar los comentarios existentes --}}
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
-                        <div class="flex items-center mb-2">
-                            
-                            <div class="ml-4">
-                                @foreach ($comentarios as $comentario)
-                                
-                                    @foreach ($users as $user)                                  
-                                        @if ($user->id == $comentario->user_id)                                      
-                                            <p class="text-blue-500">Publicado por: {{ $user->name }}</p>
-                                            <p class="text-gray-700 border border-gray-900 px-3 py-2 bg-gray-200">
-                                                {{ $comentario->body }}</p>                                           
-                                        @endif
-                                    @endforeach                                   
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+                    <div class="flex items-center mb-2">
+
+                        <div class="ml-4">
+                            @foreach ($comentarios as $comentario)
+                                @foreach ($users as $user)
+                                    @if ($user->id == $comentario->user_id)
+                                        <p class="text-blue-500">Publicado por: {{ $user->name }}</p>
+                                        <p class="text-gray-700 border border-gray-900 px-3 py-2 bg-gray-200">
+                                            {{ $comentario->body }}</p>
+                                    @endif
                                 @endforeach
-                            </div>
+                            @endforeach
                         </div>
                     </div>
+                </div>
 
                 {{-- Formulario para agregar un nuevo comentario --}}
                 <form method="POST" action="{{ route('posts.storeComment', $post) }}">
                     @csrf
                     <div class="card-body mt-3">
-                        <label class="font-bold" for="body">Escribe tu comentario:</label>
-                        <textarea name="body" id="body" rows="3"
+                        <label class="font-bold" for="comentario">Escribe tu comentario:</label>
+                        <textarea name="comentario" id="comentario" rows="3"
                             class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
-                        @error('body')
+                        @error('comentario')
                             <span>{{ $message }}</span>
                         @enderror
                     </div>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm text-sm"
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm text-sm mt-2"
                         type="submit">Enviar comentario</button>
                 </form>
 
@@ -91,4 +90,14 @@
 
         </div>
     </div>
+      
+        <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#comentario'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    
 </x-app-layout>

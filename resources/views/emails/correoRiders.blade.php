@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             max-width: 600px;
+            max-height: auto;
             margin: 0 auto;
             padding: 20px;
             background-color: #2A73FC;
@@ -68,7 +69,12 @@
         <h3>{{ $mailData['from'] }}</h3>
         <h4>"{{ $mailData['body'] }}"</h4>
         <p>Ánimo y sigue su ejemplo, hazte partícipe de la historia de este grupo singular.</p>
+        <div>
+            <a href="https://www.blog.sangut.site/login" 
+                style="display: inline-block; background-color: #0b3a6d; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Ir al blog de Los Cabesas Riders</a>
+        </div>
     </div>
+   
 </body>
 
 </html>

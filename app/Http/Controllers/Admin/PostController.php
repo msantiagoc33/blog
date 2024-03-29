@@ -74,8 +74,11 @@ class PostController extends Controller
         $nombreUsuario = Auth::user()->name;
       
         $nombreUsuario_mensaje = $nombreUsuario.' ha creado un nuevo post en el blog.';
+
         $extracto = $request->extract;
-        $extracto = strip_tags($extracto);
+
+        $extracto = strip_tags($extracto);  // Le quita el código html al texto
+
         $mailData = [
             'from' => $nombreUsuario_mensaje,
             'title' => 'Correo del blog de los Riders',
@@ -83,9 +86,11 @@ class PostController extends Controller
         ];
 
         $users = User::all();
+
         foreach ($users as $usuario) {
             Mail::to($usuario->email)->queue(new NuevoPostCorreo($mailData));
         }
+        
         return redirect()->route('admin.posts.index', $post)->with('Se ha enviado un correo a todos los riders informando del nuevo post.');
     }
 
