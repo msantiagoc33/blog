@@ -302,34 +302,34 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Administración',
-            'url'         => 'admin',
-            'icon'        => 'fas fa-tachometer-alt fa-fw',
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
+        // [
+        //     'text'        => 'Administración',
+        //     'url'         => 'admin',
+        //     'icon'        => 'fas fa-tachometer-alt fa-fw',
 
-        ],
-        ['header' => 'ADMINISTRADOR'],
-        [
-            'text' => 'Riders',
-            'route'  => 'admin.categories.index',
-            'icon' => 'fab fa-fw fa-buffer',
-            'active' => ['admin/categories*']
-        ],
-        [
-            'text' => 'Etiquetas',
-            'route'  => 'admin.tags.index',
-            'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags*']
-        ],
+        // ],
+        // ['header' => 'ADMINISTRADOR'],
+        // [
+        //     'text' => 'Riders',
+        //     'route'  => 'admin.categories.index',
+        //     'icon' => 'fab fa-fw fa-buffer',
+        //     'active' => ['admin/categories*']
+        // ],
+        // [
+        //     'text' => 'Etiquetas',
+        //     'route'  => 'admin.tags.index',
+        //     'icon' => 'far fa-fw fa-bookmark',
+        //     'active' => ['admin/tags*']
+        // ],
         ['header' => 'OPCIONES DE BLOG'],
         [
             'text'       => 'Lista de posts',
