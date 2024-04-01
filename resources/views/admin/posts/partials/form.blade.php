@@ -55,7 +55,7 @@
 
     @error('status')
         <br>
-        <small class="font-weight-bold text-danger">{{ $message }}</small>
+        <small class="font-weight-bold text-danger">{{ $message }}</small> 
     @enderror
 </div>
 
@@ -64,7 +64,7 @@
     <div class="col">
         <div class="image-wrapper">
            @isset($post->image)
-                <img  src="{{ asset('storage/' . $post->image->url) }}">
+                <img  id="imagenSubir" src="{{ asset('storage/' . $post->image->url) }}">
            @else
                 <img id="logoRiders" src="/riders/LOGO_RAIDERS.PNG">
            @endisset

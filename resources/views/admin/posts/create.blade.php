@@ -70,7 +70,7 @@
                 document.getElementById('logoRiders').setAttribute('src', event.target.result);
             };
 
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file); 
         }
     </script>
 @stop

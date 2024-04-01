@@ -12,9 +12,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
+    
     Route::get('/', [PostController::class, 'index'])->name('posts.index');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('/posts/{post}/storeComment', [PostController::class, 'storeComment'])->name('posts.storeComment');

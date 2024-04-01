@@ -79,7 +79,7 @@
             var file = event.target.files[0];
             var reader = new FileReader();
             reader.onload = (event) => {
-                document.getElementById('logoRiders').setAttribute('src', event.target.result);
+                document.getElementById('imagenSubir').setAttribute('src', event.target.result);
             };
 
             reader.readAsDataURL(file);
