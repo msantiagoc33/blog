@@ -12,9 +12,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
     
     Route::get('/', [PostController::class, 'index'])->name('posts.index');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
@@ -23,7 +20,7 @@ Route::middleware([
     Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag'); 
     Route::get('imagenes', [PostController::class, 'imagenes'])->name('posts.imagenes'); 
     
-    Route::get('send-mail', [MailController::class, 'index'])->name('index');
+    Route::get('send-mail', [MailController::class, 'index'])->name('index'); 
        
 
 });
