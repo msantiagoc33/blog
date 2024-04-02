@@ -23,4 +23,4 @@ Route::middleware([
     Route::get('send-mail', [MailController::class, 'index'])->name('index'); 
        
 
-});
+}); 

@@ -45,13 +45,14 @@ class PostController extends Controller
     {
         // Validar los datos del comentario
         $request->validate([
-            'body' => 'required|string|max:255',
+            'comentario' => 'required|string|max:255',
         ]);
-
+       
         // Crear el comentario asociado al post
         $post->comments()->create([
+            'post_id' => $post->id,
             'user_id' => auth()->user()->id,
-            'body' => $request->body,
+            'body' => strip_tags($request->comentario),
         ]);
 
         return back()->with('success', 'Tu comentario ha sido publicado.');

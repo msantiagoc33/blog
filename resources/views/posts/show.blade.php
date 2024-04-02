@@ -25,23 +25,24 @@
                 </div>
 
                 {{-- Mostrar los comentarios existentes --}}
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
-                    <div class="flex items-center mb-2">
-
-                        <div class="ml-4">
-                            @foreach ($comentarios as $comentario)
-                                @foreach ($users as $user)
-                                    @if ($user->id == $comentario->user_id)
-                                        <p class="text-blue-500">Publicado por: {{ $user->name }}</p>
-                                        <p class="text-gray-700 border border-gray-900 px-3 py-2 bg-gray-200">
-                                            {{ $comentario->body }}</p>
-                                    @endif
+                @if ($comentarios->count() > 0)
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+                        <div class="flex items-center mb-2">
+                            <div class="ml-4">
+                                @foreach ($comentarios as $comentario)
+                                    @foreach ($users as $user)
+                                        @if ($user->id == $comentario->user_id)
+                                            <p class="text-blue-500">Publicado por: {{ $user->name }}</p>
+                                            <p class="text-gray-700 border border-gray-900 px-3 py-2 bg-gray-200">
+                                                {{ $comentario->body }}</p>
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                            @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                @endif
+                
                 {{-- Formulario para agregar un nuevo comentario --}}
                 <form method="POST" action="{{ route('posts.storeComment', $post) }}">
                     @csrf
@@ -49,6 +50,7 @@
                         <label class="font-bold" for="comentario">Escribe tu comentario:</label>
                         <textarea name="comentario" id="comentario" rows="3"
                             class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+
                         @error('comentario')
                             <span>{{ $message }}</span>
                         @enderror
@@ -90,14 +92,14 @@
 
         </div>
     </div>
-      
-        <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-        <script>
-            ClassicEditor
-                .create(document.querySelector('#comentario'))
-                .catch(error => {
-                    console.error(error);
-                });
-        </script>
-    
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#comentario'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
 </x-app-layout>
