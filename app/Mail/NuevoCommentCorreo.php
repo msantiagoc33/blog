@@ -5,35 +5,39 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-
-class NuevoPostCorreo extends Mailable
+class NuevoCommentCorreo extends Mailable
 {
     use Queueable, SerializesModels;
-    public $mailData;
-
-    public function __construct($mailData) 
+    public $mailComentario;
+    /**
+     * Create a new message instance.
+     */
+    public function __construct($mailComentario)
     {
-        $this->mailData = $mailData;
+        $this->mailComentario = $mailComentario;
     }
 
-
+    /**
+     * Get the message envelope.
+     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Nueva publicación en el blog de los Riders',
+            subject: 'Nuevo comentario a un post en el blog de los Cabesas Riders.',
         );
     }
 
-
+    /**
+     * Get the message content definition.
+     */
     public function content(): Content
     {
         return new Content(
-            view: 'emails.correoRiders',  
+            view: 'emails.correoCommentarioRiders',  
         );
     }
 

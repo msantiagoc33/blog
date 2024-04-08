@@ -9,7 +9,14 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\NuevoCommentCorreo;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PostController extends Controller
 {
@@ -55,7 +62,27 @@ class PostController extends Controller
             'body' => strip_tags($request->comentario),
         ]);
 
-        return back()->with('success', 'Tu comentario ha sido publicado.');
+        /** 
+         * Enviar un correo a todos los riders informando de que se ha creado un nuevo comentario
+         * **************************************************************************************
+         */
+
+         $nombreUsuario = Auth::user()->name;
+
+         $nombreUsuario_mensaje = $nombreUsuario . ' ha COMENTADO el POST llamado ' . $post->name;
+ 
+         $mailComentario = [
+             'from' => $nombreUsuario_mensaje,
+             'title' => 'Correo del blog de los Riders'
+         ];
+ 
+         $users = User::all();
+ 
+         foreach ($users as $usuario) {
+             Mail::to($usuario->email)->queue(new NuevoCommentCorreo($mailComentario));
+         }
+
+        return back()->with('success', 'Tu comentario ha sido publicado e informado a todos los riders por correo.');
     }
 
     public function category(Category $category)
